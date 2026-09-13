@@ -1,13 +1,14 @@
 # 🔐 PyVault - Password Manager
 
-A simple desktop password manager built with Python's Tkinter GUI toolkit. Generate strong random passwords, save your website credentials locally, and manage them through a clean, minimal interface.
+A simple desktop password manager built with Python's Tkinter GUI toolkit. Generate strong random passwords, save your website credentials locally, and look them up whenever you need them — all through a clean, minimal interface.
 
 ## Features
 
-- **Random Password Generator** — Creates strong passwords combining random letters, numbers, and symbols
+- **Random Password Generator** — Creates strong passwords by mixing random letters, numbers, and symbols in randomized order
 - **Save Credentials** — Store website, email/username, and password entries locally
+- **Search/Lookup** — Instantly retrieve saved email and password for any website you've stored
 - **Input Validation** — Prevents saving incomplete entries
-- **Confirmation Dialog** — Reviews details before writing to file
+- **JSON-Based Storage** — Credentials are stored in a structured `data.json` file, keyed by website
 - **Simple GUI** — Built entirely with Tkinter, no external UI dependencies
 
 ## Screenshot
@@ -18,7 +19,8 @@ A simple desktop password manager built with Python's Tkinter GUI toolkit. Gener
 
 - Python 3
 - Tkinter (GUI)
-- Random module (password generation)
+- `random` module (password generation)
+- `json` module (data storage)
 
 ## Getting Started
 
@@ -37,14 +39,25 @@ python main.py
 
 ### Usage
 
+**Saving a new entry:**
 1. Enter the website name and your email/username
 2. Click **Generate Password** to auto-create a strong password, or type your own
 3. Click **Add** to save the entry
-4. Confirm the details in the popup dialog
-5. Your credentials are saved to `data.txt` in the format:
+4. All fields are validated — you'll get a popup if anything is missing
+5. Your credentials are saved to `data.json`, structured like this:
+   ```json
+   {
+       "example.com": {
+           "email": "example@gmail.com",
+           "password": "generated-password"
+       }
+   }
    ```
-   website | email | password
-   ```
+
+**Looking up a saved entry:**
+1. Type the website name into the Website field
+2. Click **Search**
+3. A popup will show the saved email and password for that site (or let you know if it's not found)
 
 ## Project Structure
 
@@ -52,18 +65,19 @@ python main.py
 pyvault-password-manager/
 │
 ├── main.py          # Main application file
-├── logo.png          # App logo/image
-├── data.txt           # Saved credentials (auto-generated)
+├── logo.png         # App logo/image
+├── data.json        # Saved credentials (auto-generated)
 └── README.md
 ```
 
 ## Future Improvements
 
 - [ ] Encrypt saved passwords instead of storing in plain text
-- [ ] Add a search/lookup feature for saved websites
-- [ ] Migrate storage from `.txt` to JSON or a database
 - [ ] Add a master password / login screen
 - [ ] Add copy-to-clipboard functionality
+- [ ] Add a confirmation dialog before saving new entries
+- [ ] Add ability to edit/delete existing entries
+- [ ] Migrate from local JSON to a proper database (SQLite)
 
 ## License
 
