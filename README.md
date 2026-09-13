@@ -13,7 +13,7 @@ A simple desktop password manager built with Python's Tkinter GUI toolkit. Gener
 
 ## Screenshot
 
-*(Add a screenshot of the app here)*
+![PyVault Screenshot](screenshot.png)
 
 ## Tech Stack
 
